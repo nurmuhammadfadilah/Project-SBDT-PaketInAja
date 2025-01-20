@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2025 at 08:18 PM
+-- Generation Time: Jan 20, 2025 at 09:23 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -120,6 +120,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `buat_laporan_transaksi_periode` (IN
     VALUES (p_tanggal, v_total_transaksi, v_total_pembayaran, v_total_pengiriman);
 
     SELECT CONCAT('Laporan transaksi untuk periode ', p_tipe_laporan, ' berhasil dibuat') AS status;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `lihat_pengiriman_berdasarkan_resi` (IN `p_nomor_resi` VARCHAR(50))   BEGIN
+    
+    SELECT * 
+    FROM tabel_pengiriman
+    WHERE nomor_resi = p_nomor_resi;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `tambah_admin` (IN `p_id_cabang` INT, IN `p_username` VARCHAR(100), IN `p_password` VARCHAR(100), IN `p_hak_akses` VARCHAR(50), IN `p_nomor_telepon` VARCHAR(20))   BEGIN
